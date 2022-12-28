@@ -210,18 +210,18 @@ int main()
         while(true)
         {
             scanf("%i", &choice);
-            pid = fork();
-            if(!pid)
-            {
-                while(true)
-                {
-                    scanf("%i", &choice);
-                    printf("Not your turn!\n");
-                }
-            }
             if(choice >=0 && choice <= 10)
             {
                 write(client_socket, &choice, 4);
+                pid = fork();
+                if(!pid)
+                {
+                    while(true)
+                    {
+                        scanf("%i", &choice);
+                        printf("Not your turn!\n");
+                    }
+                }
                 break;
             }
             else
@@ -243,18 +243,18 @@ int main()
         while(true)
         {
             scanf("%i", &choice);
-            pid = fork();
-            if(!pid)
-            {
-                while(true)
-                {
-                    scanf("%i", &choice);
-                    printf("Not your turn!\n");
-                }
-            }
             if(choice >=0 && choice <= 10)
             {
                 write(client_socket, &choice, 4);
+                pid = fork();
+                if(!pid)
+                {
+                    while(true)
+                    {
+                        scanf("%i", &choice);
+                        printf("Not your turn!\n");
+                    }
+                }
                 break;
             }
             else
@@ -269,6 +269,7 @@ int main()
         comment(result, answer, 2);
     }
 
+    kill(pid, 2);
     close(client_socket);
     return 0;
 }
