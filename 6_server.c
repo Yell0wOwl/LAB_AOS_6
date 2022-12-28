@@ -154,6 +154,16 @@ void log(int logfile_local, char *s)
 
 int main()
 {
+
+    if(fork())
+    {
+        return 0;
+    }
+    else
+    {
+        setsid();
+    }
+
     //Обработка сигналов
     signal(SIGTERM, sig_term);
     signal(SIGINT, sig_term);
